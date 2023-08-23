@@ -1,0 +1,24 @@
+*{
+  /* background-color: black; */
+  margin: 0px;
+  
+}
+.main{
+  background-color: black;
+
+}
+/* .footer {
+  
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+} */
+.carousel-indicators {
+  background-color:transparent ;
+}
+.carousel{
+  position: relative;
+  
+}
