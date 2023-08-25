@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
 
 const CadaProdPage = () => {
+
     const [producto, setProducto] = useState({})
     const [carrito, setCarrito] = useState([])
     const token = JSON.parse(localStorage.getItem('token'))
@@ -23,6 +24,7 @@ const CadaProdPage = () => {
       console.log(data)
     }
     const agregarProd = async (id) => {
+      
       
       const prodExistente = carrito.find((prod) => prod._id === id)
       if (prodExistente){
@@ -49,6 +51,7 @@ const CadaProdPage = () => {
         showConfirmButton: false,
         timer: 1500
       })
+  
     }
     useEffect(() => {
         getProduct(), getCart()

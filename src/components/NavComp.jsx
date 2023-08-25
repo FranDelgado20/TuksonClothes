@@ -59,7 +59,7 @@ const NavComp = () => {
               <NavLink className="text-white mx-4" to="/user/nosotros">Sobre Nosotros</NavLink>
               <NavLink className="text-white mx-4" to="/user/contacto">Contacto</NavLink>
               <NavLink className="text-white mx-4" to="/user/productos">PRODUCTOS</NavLink>
-              <NavLink className="text-white mx-4" to="/user/carrito">Carrito</NavLink>
+              <NavLink className="text-white mx-4" to="/user/carrito"><i className="bi bi-cart-fill"></i></NavLink>
               
 
             </Nav>

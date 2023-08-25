@@ -9,7 +9,8 @@ const ModalCrear = () => {
     const [producto, setProducto] = useState({
         nombre:'',
         precio:'',
-        codigo:''
+        codigo:'',
+        cantidad:''
     })     
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,7 +28,7 @@ const ModalCrear = () => {
           nombre: producto.nombre,
           precio: producto.precio,
           codigo: producto.codigo,
-          cantidad: 1
+          cantidad: producto.cantidad
         })
     })
     Swal.fire({
@@ -62,6 +63,10 @@ const ModalCrear = () => {
       <Form.Group className="mb-3" >
         <Form.Label>Codigo</Form.Label>
         <Form.Control type="number" name='codigo' onChange={handleChange} placeholder="***" />
+      </Form.Group>
+      <Form.Group className="mb-3" >
+        <Form.Label>Cantidad</Form.Label>
+        <Form.Control type="number" name='cantidad' onChange={handleChange} placeholder="###" />
       </Form.Group>
     </Form>
         </Modal.Body>
