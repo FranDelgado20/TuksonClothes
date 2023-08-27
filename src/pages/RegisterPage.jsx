@@ -3,8 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import clienteAxios from "../utils/axios";
+import { config } from "../utils/axios";
 const RegisterPage = () => {
- 
   const navigate = useNavigate();
 
   const [checkInputUser, setCheckInputUser] = useState(false);
@@ -13,9 +14,9 @@ const RegisterPage = () => {
   const [formValue, setFormValue] = useState({
     user: "",
     pass: "",
-    Rpass: "",
+    rPass: "",
   });
-  
+
   const handleChange = (ev) => {
     setFormValue({ ...formValue, [ev.target.name]: ev.target.value });
 
@@ -25,60 +26,66 @@ const RegisterPage = () => {
     if (formValue.pass !== "") {
       setCheckInputPass(false);
     }
-    if (formValue.Rpass !== "") {
+    if (formValue.rPass !== "") {
       setCheckInputRepeatPass(false);
     }
   };
-  
-  const crearCuenta = async () => {
-    if (!formValue.user) {
-      setCheckInputUser(true);
-    }
-    if (!formValue.pass) {
-      setCheckInputPass(true);
-    }
-    if (!formValue.Rpass) {
-      setCheckInputRepeatPass(true);
-    }
-    
 
-    if (formValue.pass === formValue.Rpass) {
-      const res = await fetch("http://localhost:8080/api/usuarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: formValue.user,
-          pass: formValue.pass,
-        }),
-      });
-      if (res.status === 201) {
-        Swal.fire({
-          icon: "success",
-          title: "Registro Exitoso!!!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/login");
+  const crearCuenta = async () => {
+    try {
+      if (!formValue.user) {
+        setCheckInputUser(true);
+      }
+      if (!formValue.pass) {
+        setCheckInputPass(true);
+      }
+      if (!formValue.rPass) {
+        setCheckInputRepeatPass(true);
+      }
+  
+      if (formValue.pass === formValue.rPass) {
+        const res = await clienteAxios.post(
+          "/usuarios",
+          {
+            username: formValue.user,
+            pass: formValue.pass,
+          },
+          config
+        );
+       
+       
+        if (res.status === 201) {
+         
+          Swal.fire({
+            icon: "success",
+            title: "Registro Exitoso!!!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/login");
+        } 
       } else {
         Swal.fire({
           icon: "error",
-          title: "EL USUARIO YA EXISTE!!!",
-          showConfirmButton: false,
-          timer: 1500,
+          title: "OH NO!",
+          text: "Las contraseñas no coinciden",
         });
-        return;
       }
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "OH NO!",
-        text: "Las contraseñas no coinciden",
-      });
+    } catch (error) {
+      if(error.response.status === 422){
+
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Al parecer hubo un error!',
+          text:error.response.data.msg,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
   };
-  
+
   return (
     <>
       <div className="container-fluid bg-black d-flex justify-content-center ">
@@ -118,7 +125,7 @@ const RegisterPage = () => {
                   ? "form-control is-invalid"
                   : "form-control"
               }
-              name="Rpass"
+              name="rPass"
               type="password"
               placeholder="***********"
             />

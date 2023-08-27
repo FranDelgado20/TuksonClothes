@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import CardComp from "../components/CardComp";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import clienteAxios from "../utils/axios";
 
 const ProductosPage = () => {
   const [productos, setProductos] = useState([]);
   const [array, setArray] = useState([]);
   const getProductos = async () => {
-    const res = await fetch("http://localhost:8080/api/productos");
-    const data = await res.json();
-    setProductos(data.obtenerProductos);
-    setArray(data.obtenerProductos);
-    console.log(array);
+    const res = await clienteAxios.get('/productos')
+    setProductos(res.data.obtenerProductos)
+    setArray(res.data.obtenerProductos)
   };
   const handleChange = (ev) => {
     const busqueda = ev?.target?.value.toLowerCase();
@@ -51,6 +50,7 @@ const ProductosPage = () => {
           <CardComp arrayProd={productos} />
         </div>
       </div>
+      
     </>
   );
 };
