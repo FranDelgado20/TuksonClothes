@@ -3,7 +3,7 @@ import React from 'react'
 const SobreNosotrosPage = () => {
   return (
     <>
-    <div className="Container ">
+    <div className="Container letra ">
         <h1 className='text-center text-white'>
             ¿Que es Tukson Clothes?
         </h1>

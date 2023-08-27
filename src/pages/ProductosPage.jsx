@@ -45,7 +45,7 @@ const ProductosPage = () => {
         <InputGroup.Text id="basic-addon2"><i className="bi bi-search"></i></InputGroup.Text>
       </InputGroup>
           </div>
-      <div className="container-fluid bg-black">
+      <div className="container bg-black">
         <div className="row">
           <CardComp arrayProd={productos} />
         </div>

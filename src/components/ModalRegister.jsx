@@ -97,7 +97,7 @@ const ModalRegister = () => {
         Registrase
       </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal  className='letra'show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Complete los datos</Modal.Title>
         </Modal.Header>
@@ -145,15 +145,15 @@ const ModalRegister = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-around">
-          <Button variant="danger" onClick={handleClose}>
+          <button className="boton_eliminar slide_right_eliminar" onClick={handleClose}>
           <i className="bi me-2 bi-x-circle-fill"></i>
             Cerrar
-          </Button>
-          <Button variant="success" onClick={crearCuenta}>
+          </button>
+          <button className="boton slide_right" onClick={crearCuenta}>
           <i className="bi me-2 bi-check-square-fill"></i>
             
             Registrarse{" "}
-          </Button>
+          </button>
         </Modal.Footer>
        
       </Modal>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Card from "react-bootstrap/Card";
+
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import clienteAxios from "../utils/axios";
@@ -27,7 +27,16 @@ const CadaProdPage = () => {
   const agregarProd = async (id) => {
     try {
       if (!token) {
-        ;
+        Swal.fire({
+          title: "<strong>Debes iniciar sesión</strong>",
+          icon: "info",
+
+          showCloseButton: true,
+
+          focusConfirm: false,
+          confirmButtonText: '<i class="fa fa-thumbs-up"></i> Entiendo!',
+        });
+        return;
       }
       const prodExistente = carrito.find((prod) => prod._id === id);
       if (prodExistente) {
@@ -78,7 +87,7 @@ const CadaProdPage = () => {
         </Card.Body>
       </Card> */}
 
-      <div className="container text-light">
+      <div className="container text-light letra">
         <div className="row">
           <div className="col bordes-cadaProd d-flex justify-content-center ">
             <img className="imagen my-4" src={producto.imagen} alt="" />
@@ -90,7 +99,7 @@ const CadaProdPage = () => {
             </aside>
             <hr />
             <aside className="d-flex justify-content-around my-5">
-              <h3 className="ms-5">${producto.precio}</h3>
+              <h3 className="ms-5 ">${producto.precio}</h3>
 
               <Form.Select className="w-50" aria-label="Default select example">
                 <option>Seleccione su talle</option>
@@ -103,14 +112,18 @@ const CadaProdPage = () => {
             </aside>
 
             <aside className="d-flex justify-content-center my-5">
-              <Button variant="light" onClick={() => agregarProd(producto._id)} className="">
+              <button
+                variant="light"
+                onClick={() => agregarProd(producto._id)}
+                className=" boton slide_right"
+              >
                 AGREGAR AL CARRITO
-              </Button>
+              </button>
             </aside>
           </div>
         </div>
       </div>
-      <div>
+      <div className="letra">
         <h4 className="text-light ms-5 my-5">Descripcion</h4>
         <h6 className="text-light ms-5">{producto.descripcion}</h6>
       </div>

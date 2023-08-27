@@ -73,7 +73,7 @@ const ModalLogin = () => {
         Iniciar sesion
       </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal className="letra" show={show} onHide={handleClose}>
         <Modal.Header  closeButton>
           <Modal.Title>Ingrese a su cuenta</Modal.Title>
         </Modal.Header>
@@ -107,20 +107,22 @@ const ModalLogin = () => {
           
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-around">
-          <Button variant="danger" onClick={handleClose}>
+          <button className='boton_eliminar slide_right_eliminar' onClick={handleClose}>
           <i className="bi me-2 bi-x-circle-fill"></i>
             Cerrar
-          </Button>
-          <Button variant="success" onClick={ingresoCuenta}>
+          </button>
+          <button className='boton slide_right' onClick={ingresoCuenta}>
           <i className="bi me-2 bi-box-arrow-in-right"></i>
             Iniciar sesion{" "}
-          </Button>
+          </button>
         </Modal.Footer>
         <hr />
         <h4 className="text-center ">
             ¿No tienes cuenta?
         </h4>
       <ModalRegister  />
+        <aside className="mb-1"/>
+
       </Modal>
     </>
   )
