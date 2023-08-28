@@ -5,16 +5,32 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import ModalRegister from "./ModalRegister";
 import ModalLogin from "./ModalLogin";
+import { useState } from "react";
+import { useEffect } from "react";
+import NavLinkItem from "./NavLinkItem";
 
 const NavComp = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const role = JSON.parse(localStorage.getItem("role"));
-  const handleClick = () => {
+  const [token, setToken] = useState("");
+  const [role, setRole] = useState("");
+  // const tokenLS = JSON.parse(localStorage.getItem("token"));
+  // const roleLS = JSON.parse(localStorage.getItem("role"));
+  useEffect(() => {
+    const findToken = JSON.parse(localStorage.getItem("token"));
+    const findRole = JSON.parse(localStorage.getItem("role"));
+    setToken(findToken);
+    setRole(findRole);
+  }, []);
+  const saveToken = (accessToken, userRole) => {
+    setToken(accessToken);
+    setRole(userRole);
+  };
+  const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("idUser");
     localStorage.removeItem("idCart");
     localStorage.removeItem("role");
-
+    setToken("");
+    setRole("");
     navigate("/");
   };
   return (
@@ -30,69 +46,54 @@ const NavComp = () => {
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          
+
           <Navbar.Collapse id="basic-navbar-nav">
             {token && role === "user" ? (
               <Nav className="me-auto nav">
-                <NavLink className="text-white mx-4  navbarLink button_slide slide_down" to={"/user"}>
-                  Inicio
-                </NavLink>
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to="/user/nosotros">
-                  Sobre Nosotros
-                </NavLink>
-               
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to="/user/productos">
-                  PRODUCTOS
-                </NavLink>
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to="/user/carrito">
-                  <i className="bi bi-cart-fill"></i>
-                </NavLink>
+                <NavLinkItem to={"/user"} name={"Inicio"} />
+
+                <NavLinkItem to="/user/nosotros" name={"Sobre Nosotros"} />
+
+                <NavLinkItem name={"PRODUCTOS"} to="/user/productos" />
+
+                <NavLinkItem
+                  to="/user/carrito"
+                  name={<i className="bi bi-cart-fill"></i>}
+                />
               </Nav>
             ) : token && role === "admin" ? (
               <Nav className="me-auto">
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to={"/admin"}>
-                  Inicio
-                </NavLink>
+                <NavLinkItem to={"/admin"} name={"Inicio"} />
 
-                
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down " to="/listaUsuarios">
+                <NavLink
+                  className="text-white mx-4 navbarLink button_slide slide_down "
+                  to="/listaUsuarios"
+                >
                   Ver usuarios
                 </NavLink>
               </Nav>
             ) : (
               <Nav className="me-auto nav">
-                <NavLink className="text-white mx-4 navbarLink  button_slide slide_down" to={"/"}>
-                  Inicio
-                </NavLink>
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to="/nosotros">
-                  Sobre Nosotros
-                </NavLink>
-                
-                <NavLink className="text-white mx-4 navbarLink button_slide slide_down" to="/productos">
-                  PRODUCTOS
-                </NavLink>
+                <NavLinkItem to={"/"} name={"Inicio"} />
+                <NavLinkItem to="/nosotros" name={"Sobre Nosotros"} />
+
+                <NavLinkItem name={"PRODUCTOS"} to="/productos" />
               </Nav>
             )}
             {token ? (
               <>
                 <Nav className="ms-auto nav">
-                  <NavLink className="text-white mx-4 navbarLink button_slide slide_down" onClick={handleClick}>
-                    {" "}
+                  <NavLink
+                    className="text-white mx-4 navbarLink button_slide slide_down" onClick={logOut}>
                     Cerrar sesion
                   </NavLink>
                 </Nav>
               </>
             ) : (
               <>
-                <Nav className="ms-auto nav">
-                  {/* <NavLink className="text-white mx-4 navbarLink" to="/register">
-                    Registrase
-                  </NavLink> */}
-                  <ModalRegister/>
-                  <ModalLogin/>
-                  {/* <NavLink className="text-white mx-4 navbarLink" to="/login">
-                    Iniciar Sesion
-                  </NavLink> */}
+                <Nav className="ms-auto nav">              
+                  <ModalRegister />
+                  <ModalLogin saveToken={saveToken} />                
                 </Nav>
               </>
             )}

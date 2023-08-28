@@ -8,7 +8,7 @@ import clienteAxios from "../utils/axios";
 import { config } from "../utils/axios";
 import ModalRegister from "./ModalRegister";
 
-const ModalLogin = () => {
+const ModalLogin = ({saveToken}) => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     
@@ -48,6 +48,7 @@ const ModalLogin = () => {
             ? navigate("/user")
             : navigate("/admin");
             setShow(false)
+            saveToken(res?.data?.updateData?.token, res?.data?.updateData?.role )
         } else {
           Swal.fire({
             icon: "error",
