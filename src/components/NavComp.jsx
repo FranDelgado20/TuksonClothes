@@ -35,7 +35,7 @@ const NavComp = () => {
   };
   return (
     <>
-      <Navbar expand="lg" className="   bg-black">
+      <Navbar expand="lg" className="  fixed-top bg-black">
         <container className="d-flex container-fluid">
           <Navbar.Brand>
             <img
@@ -51,11 +51,8 @@ const NavComp = () => {
             {token && role === "user" ? (
               <Nav className="me-auto nav">
                 <NavLinkItem to={"/user"} name={"Inicio"} />
-
                 <NavLinkItem to="/user/nosotros" name={"Sobre Nosotros"} />
-
                 <NavLinkItem name={"PRODUCTOS"} to="/user/productos" />
-
                 <NavLinkItem
                   to="/user/carrito"
                   name={<i className="bi bi-cart-fill"></i>}

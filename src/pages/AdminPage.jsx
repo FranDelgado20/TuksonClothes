@@ -60,7 +60,7 @@ try {
   }, []);
   return (
     <>
-      <div className="container-fluid bg-black">
+      <div className="container-fluid bg-black letra">
         <div className="d-flex justify-content-center">
           <aside className="mx-5">
             <h2 className="text-center text-light">PRODUCTOS</h2>
@@ -71,37 +71,37 @@ try {
         </div>
 
         <hr />
-        <Table striped bordered hover variant="dark">
-          <thead>
+        <table className="datatable text-white w-100">
+          <thead  className="thead_table">
             <tr>
-              <th>ID</th>
-              <th>NOMBRE</th>
-              <th>PRECIO</th>
-              <th>CODIGO</th>
-              <th>ACCIONES</th>
+              <th className="separador">ID</th>
+              <th className="separador">NOMBRE</th>
+              <th className="separador">PRECIO</th>
+              <th className="separador">CODIGO</th>
+              <th className="separador">ACCIONES</th>
             </tr>
           </thead>
           <tbody>
             {productos.map((prod) => (
               <tr key={prod._id}>
-                <td>{prod._id}</td>
-                <td>{prod.nombre}</td>
-                <td>${prod.precio}</td>
-                <td>{prod.codigo}</td>
-                <td className="justify-content-around d-flex">
+                <td className="separador">{prod._id}</td>
+                <td className="separador">{prod.nombre}</td>
+                <td className="separador">${prod.precio}</td>
+                <td className="separador">{prod.codigo}</td>
+                <td className="justify-content-around separador d-flex">
                   <ModalEditar idProducto={prod._id} setProductos={setProductos} />
-                  <Button
-                    variant="danger"
+                  <button
+                    className=" slide_down_eliminar  boton_eliminar "
                     onClick={() => eliminarProducto(prod._id)}
                   >
                     <i className="bi bi-trash"></i>
                     Eliminar
-                  </Button>
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       </div>
     </>
   );

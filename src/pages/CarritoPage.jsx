@@ -111,7 +111,7 @@ const CarritoPage = () => {
             <tr key={cart._id}>
               <td className="separador">{cart._id}</td>
               <td className="separador">{cart.nombre}</td>
-              <td className="separador">${cart.precio}</td>
+              <td className="separador"><i className="bi me-1 bi-currency-dollar"></i>{cart.precio}</td>
               <td className="separador">{cart.codigo}</td>
               <td className="d-flex justify-content-center separador align-items-center">
                 <button
@@ -130,7 +130,7 @@ const CarritoPage = () => {
                   +
                 </button>
               </td>
-              <td  className=" separador ">$ {precioTotalPorProducto[cart._id]}</td>
+              <td  className=" separador ">  <i className="bi  bi-currency-dollar"> </i>{precioTotalPorProducto[cart._id]}</td>
               <td className=" separador text-center">
                 <button  className=" slide_down_eliminar boton_eliminar " onClick={() => eliminarProd(cart._id)}>
                 <i className="bi bi-trash"></i>
@@ -145,9 +145,9 @@ const CarritoPage = () => {
 
       <hr />
       <div className="d-flex ms-5 mb-5 align-items-center" >
-        <h2 className="text-white">TOTAL A PAGAR: $</h2>
-        <h2 className="text-white">{precioTotal}</h2>
-      <button className="ms-5  w-25 text-black button_slide slide_right">Pagar</button>
+        <h2 className="text-white letra">TOTAL A PAGAR: $</h2>
+        <h2 className="text-white letra">{precioTotal}</h2>
+      <button className="ms-5  w-25 text-black button_slide slide_right"> <i className="bi me-2 bi-cash-coin"></i>Pagar</button>
       </div>
      
      

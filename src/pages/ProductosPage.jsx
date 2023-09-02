@@ -33,7 +33,7 @@ const ProductosPage = () => {
     <>
     <div className="d-flex justify-content-center">
 
-      <InputGroup className="mb-3 w-50 ">
+      <InputGroup className="my-3 w-50 ">
         <Form.Control
           placeholder="Buscador..."
           aria-label="Recipient's username"
@@ -45,7 +45,7 @@ const ProductosPage = () => {
         <InputGroup.Text id="basic-addon2"><i className="bi bi-search"></i></InputGroup.Text>
       </InputGroup>
           </div>
-      <div className="container bg-black">
+      <div className="container">
         <div className="row">
           <CardComp arrayProd={productos} />
         </div>

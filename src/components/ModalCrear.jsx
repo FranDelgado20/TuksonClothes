@@ -68,11 +68,12 @@ const ModalCrear = ({setProductos}) => {
   };
   return (
     <>
-      <Button variant="success" onClick={handleShow}>
+      <button className="boton slide_right" onClick={handleShow}>
+      <i className="bi me-2 bi-plus-lg"></i>
         Crear un producto
-      </Button>
+      </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} className="letra" onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Creá un producto</Modal.Title>
         </Modal.Header>
@@ -126,12 +127,14 @@ const ModalCrear = ({setProductos}) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <button className="boton_eliminar slide_right_eliminar" onClick={handleClose}>
+          <i className="bi me-2 bi-x-circle-fill"></i>
             Cerrar
-          </Button>
-          <Button variant="primary" onClick={crearProd}>
-            Guardar los cambios
-          </Button>
+          </button>
+          <button className='boton slide_right' onClick={crearProd}>
+          <i className="bi me-2 bi-check-lg"></i>
+            Guardar cambios
+          </button>
         </Modal.Footer>
       </Modal>
     </>

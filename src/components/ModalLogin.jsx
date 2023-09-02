@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import clienteAxios from "../utils/axios";
 import { config } from "../utils/axios";
+import { Formik } from "formik";
+import { errorLogin } from "../helpers/validationSchemaErrors";
 import ModalRegister from "./ModalRegister";
 
 const ModalLogin = ({saveToken}) => {
@@ -15,20 +17,16 @@ const ModalLogin = ({saveToken}) => {
    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [formValues, setFormValues] = useState({
-      user: "",
-      pass: "",
-    });
-    const handleChange = (ev) => {
-      setFormValues({ ...formValues, [ev.target.name]: ev.target.value });
-    };
-    const ingresoCuenta = async () => {
+    
+  
+    const ingresoCuenta = async (values) => {
+      console.log('1')
       try {
         const res = await clienteAxios.post(
           "/usuarios/login",
           {
-            username: formValues.user,
-            pass: formValues.pass,
+            user: values.user,
+            pass: values.pass,
           },
           config
         );
@@ -73,8 +71,77 @@ const ModalLogin = ({saveToken}) => {
       <button variant="dark" className="bg-black navbarLink button_slide slide_down" onClick={handleShow}>
         Iniciar sesion
       </button>
-
       <Modal className="letra" show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Ingrese a su cuenta</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Formik
+            initialValues={{ user: "", pass: ""}}
+            onSubmit={(values) => ingresoCuenta(values)}
+            validationSchema={errorLogin}
+          >
+            {({ values, errors, touched, handleChange, handleSubmit }) => (
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Usuario</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="user"
+                    onChange={handleChange}
+                    value={values.user}
+                    placeholder="Ingrese su email"
+                    className={errors.user && touched.user && "is-invalid"}
+                  />
+                  <small className="text-danger">
+                    {" "}
+                    {errors.user && touched.user && errors.user}
+                  </small>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Contraseña</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="pass"
+                    value={values.pass}
+                    onChange={handleChange}
+                    placeholder="**********"
+                    className={errors.pass && touched.pass && "is-invalid"}
+                  />
+                  <small className="text-danger">
+                    {" "}
+                    {errors.pass && touched.pass && errors.pass}
+                  </small>
+                </Form.Group>
+               
+                <div className="d-flex  justify-content-around">
+                  <button
+                    className="boton_eliminar slide_right_eliminar"
+                    onClick={handleClose}
+                  >
+                    <i className="bi me-2 bi-x-circle-fill"></i>
+                    Cerrar
+                  </button>
+                  <button
+                    className="boton slide_right"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    <i className="bi me-2 bi-check-square-fill"></i>
+                    Iniciar Sesion{" "}
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Modal.Body>
+        <hr />
+        <h4 className="text-center ">¿No tienes cuenta?</h4>
+        <ModalRegister />
+        <aside className="mb-1" />
+      </Modal>
+      {/* <Modal className="letra" show={show} onHide={handleClose}>
         <Modal.Header  closeButton>
           <Modal.Title>Ingrese a su cuenta</Modal.Title>
         </Modal.Header>
@@ -124,7 +191,7 @@ const ModalLogin = ({saveToken}) => {
       <ModalRegister  />
         <aside className="mb-1"/>
 
-      </Modal>
+      </Modal> */}
     </>
   )
 }

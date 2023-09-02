@@ -28,14 +28,14 @@ const CardComp = ({ arrayProd }) => {
        
         <Card
           key={prod._id}
-          className=" mx-3 my-2 "
+          className=" mx-3 my-2 letra"
           style={{ width: "18rem" }}
         >
           <Card.Img className="card" src={prod.imagen} />
 
           <Card.Body>
             <Card.Title>{prod.nombre}</Card.Title>
-            <Card.Text>${prod.precio}</Card.Text>
+            <Card.Text> <i className="bi  bi-currency-dollar"> </i>{prod.precio}</Card.Text>
 
             {token && idUser ? (
               <Link

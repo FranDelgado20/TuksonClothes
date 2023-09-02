@@ -87,9 +87,9 @@ const CadaProdPage = () => {
         </Card.Body>
       </Card> */}
 
-      <div className="container text-light letra">
+      <div className="container mt-5 text-light letra">
         <div className="row">
-          <div className="col bordes-cadaProd d-flex justify-content-center ">
+          <div className="col me-3 bordes-cadaProd d-flex justify-content-center ">
             <img className="imagen my-4" src={producto.imagen} alt="" />
           </div>
           <div className="col ">
@@ -101,7 +101,7 @@ const CadaProdPage = () => {
             <aside className="d-flex justify-content-around my-5">
               <h3 className="ms-5 ">${producto.precio}</h3>
 
-              <Form.Select className="w-50" aria-label="Default select example">
+              <Form.Select className="w-50 mb-5" aria-label="Default select example">
                 <option>Seleccione su talle</option>
                 <option value="1">XS</option>
                 <option value="2">S</option>
@@ -117,6 +117,7 @@ const CadaProdPage = () => {
                 onClick={() => agregarProd(producto._id)}
                 className=" boton slide_right"
               >
+                <i className="bi bi-cart-plus-fill"></i>
                 AGREGAR AL CARRITO
               </button>
             </aside>
