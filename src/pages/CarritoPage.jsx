@@ -100,6 +100,7 @@ const CarritoPage = () => {
             <th className="separador" >ID</th>
             <th className="separador">Producto</th>
             <th className="separador">Precio</th>
+            <th className="separador">Talle</th>
             <th className="separador">Codigo</th>
             <th className="separador">Cantidad</th>
             <th className="separador" >Precio Total</th>
@@ -112,6 +113,7 @@ const CarritoPage = () => {
               <td className="separador">{cart._id}</td>
               <td className="separador">{cart.nombre}</td>
               <td className="separador"><i className="bi me-1 bi-currency-dollar"></i>{cart.precio}</td>
+              <td className="separador"></td>
               <td className="separador">{cart.codigo}</td>
               <td className="d-flex justify-content-center separador align-items-center">
                 <button

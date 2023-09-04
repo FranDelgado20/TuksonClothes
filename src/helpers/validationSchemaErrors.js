@@ -11,4 +11,13 @@ export const errorLogin = yup.object().shape({
     pass: yup.string().required('Este campo es OBLIGATORIO'),
 })
 
+export const errorProd = yup.object().shape({
+    nombre: yup.string().required('Este campo es OBLIGATORIO'),
+    precio: yup.string().required('Este campo es OBLIGATORIO'),
+    codigo: yup.string().required('Este campo es OBLIGATORIO'),
+    descripcion: yup.string().required('Este campo es OBLIGATORIO'),
+    categoria: yup.string().required('Este campo es OBLIGATORIO'),
+    imagen: yup.string().required('Este campo es OBLIGATORIO'),
+    stock: yup.string().required('Este campo es OBLIGATORIO')
+})
 export default errorsSchema

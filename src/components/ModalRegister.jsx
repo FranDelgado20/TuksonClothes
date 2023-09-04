@@ -7,6 +7,7 @@ import { config } from "../utils/axios";
 import ModalLogin from "./ModalLogin";
 import { Formik } from "formik";
 import errorsSchema from "../helpers/validationSchemaErrors";
+
 const ModalRegister = () => {
   const [show, setShow] = useState(false);
 
@@ -83,7 +84,7 @@ const ModalRegister = () => {
                     name="user"
                     onChange={handleChange}
                     value={values.user}
-                    placeholder="Nombre de usuario"
+                    placeholder="Ingrese su email"
                     className={errors.user && touched.user && "is-invalid"}
                   />
                   <small className="text-danger">

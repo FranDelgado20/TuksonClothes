@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import clienteAxios from "../utils/axios";
 import { config } from "../utils/axios";
 import Form from "react-bootstrap/Form";
+import { Formik } from "formik";
 
 const CadaProdPage = () => {
   const [producto, setProducto] = useState({});
@@ -24,6 +25,7 @@ const CadaProdPage = () => {
 
     setProducto(res.data.oneProduct);
   };
+  
   const agregarProd = async (id) => {
     try {
       if (!token) {
@@ -38,6 +40,7 @@ const CadaProdPage = () => {
         });
         return;
       }
+      
       const prodExistente = carrito.find((prod) => prod._id === id);
       if (prodExistente) {
         Swal.fire({
@@ -76,16 +79,7 @@ const CadaProdPage = () => {
 
   return (
     <>
-      {/* <Card key={producto._id} style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>{producto.nombre}</Card.Title>
-          <Card.Text>{producto.precio}</Card.Text>
-          <Button variant="primary" onClick={() => agregarProd(producto._id)}>
-            Agregar al carrito
-          </Button>
-        </Card.Body>
-      </Card> */}
+     
 
       <div className="container mt-5 text-light letra">
         <div className="row">
@@ -100,15 +94,32 @@ const CadaProdPage = () => {
             <hr />
             <aside className="d-flex justify-content-around my-5">
               <h3 className="ms-5 ">${producto.precio}</h3>
+              {
 
-              <Form.Select className="w-50 mb-5" aria-label="Default select example">
+
+                producto.categoria === 'Calzado' ? 
+              <Form.Select onChange={talle} className="w-50 mb-5" aria-label="Default select example">
                 <option>Seleccione su talle</option>
-                <option value="1">XS</option>
-                <option value="2">S</option>
-                <option value="3">M</option>
-                <option value="4">L</option>
-                <option value="5">XL</option>
+                <option value="40">40</option>
+                <option value="40.5">40.5</option>
+                <option value="41">41</option>
+                <option value="41.5">41.5</option>
+                <option value="42">42</option>
+                <option value="42.5">42.5</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
               </Form.Select>
+              :
+              <Form.Select className="w-50 mb-5" aria-label="Default select example">
+              <option>Seleccione su talle</option>
+              <option value="XS">XS</option>
+              <option value="2">S</option>
+              <option value="3">M</option>
+              <option value="4">L</option>
+              <option value="5">XL</option>
+            </Form.Select>
+
+              }
             </aside>
 
             <aside className="d-flex justify-content-center my-5">

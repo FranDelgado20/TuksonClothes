@@ -80,6 +80,13 @@
   border: 1px solid ;
   text-align:center;
 }
+.filtro{
+  border: 1px solid black; 
+  border-radius: 3%;
+  margin-left: 3px;
+background-color:  rgb(0, 0, 0);
+  
+}
 .boton{
  
     color: black;

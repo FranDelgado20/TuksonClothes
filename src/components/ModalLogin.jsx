@@ -20,7 +20,7 @@ const ModalLogin = ({saveToken}) => {
     
   
     const ingresoCuenta = async (values) => {
-      console.log('1')
+     
       try {
         const res = await clienteAxios.post(
           "/usuarios/login",

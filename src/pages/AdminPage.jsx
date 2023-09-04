@@ -78,6 +78,7 @@ try {
               <th className="separador">NOMBRE</th>
               <th className="separador">PRECIO</th>
               <th className="separador">CODIGO</th>
+              <th className="separador">STOCK</th>
               <th className="separador">ACCIONES</th>
             </tr>
           </thead>
@@ -88,6 +89,7 @@ try {
                 <td className="separador">{prod.nombre}</td>
                 <td className="separador">${prod.precio}</td>
                 <td className="separador">{prod.codigo}</td>
+                <td className="separador">{prod.stock}</td>
                 <td className="justify-content-around separador d-flex">
                   <ModalEditar idProducto={prod._id} setProductos={setProductos} />
                   <button
